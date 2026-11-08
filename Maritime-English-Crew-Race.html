@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#061f35" />
+  <meta name="description" content="An offline two-crew Maritime English terminology race with helm orders, vessel conditions, acronyms, and safety vocabulary." />
+  <title>Maritime English | All Hands on Deck</title>
+  <style>
+/* MARITIME THEME: edit colours, waves and icons here */
+:root{color-scheme:dark;--bg:#071222;--panel:#10223b;--line:rgba(180,218,237,.15);--cream:#fbfaf6;--ink:#10243a;--sun:#ffd167;--aqua:#67e4d3;--pink:#ff8fa3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:#fff;background:radial-gradient(ellipse 60% 36% at 92% 4%,rgba(47,173,189,.18),transparent),radial-gradient(ellipse 60% 36% at 7% 42%,rgba(255,139,113,.10),transparent),var(--bg);font-family:Inter,"Avenir Next","Segoe UI",ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(to right,rgba(118,176,198,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(118,176,198,.025) 1px,transparent 1px);background-size:65px 65px}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:3px}[hidden]{display:none!important}
+.shell{max-width:1500px;margin:0 auto;padding:0 clamp(16px,3vw,50px)}
+.topbar{min-height:88px;display:flex;gap:18px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand-icon{width:44px;height:44px;background:var(--sun);color:#17283c;border-radius:13px;display:grid;place-items:center;font-size:27px;transform:rotate(-6deg);box-shadow:0 5px 0 rgba(255,209,103,.15)}.brand-copy{min-width:0}.brand-label{font-size:9px;letter-spacing:.24em;color:#8fb5cb;font-weight:1000;display:block;margin-bottom:6px}.brand-label span{color:#ffd167;margin:0 5px}.brand strong{font-size:clamp(14px,1.35vw,18px);line-height:1.2;font-weight:900;letter-spacing:.01em}
+.actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.nav-btn{border:1px solid rgba(170,213,235,.18);border-radius:10px;background:rgba(255,255,255,.05);color:#f3faff;font-size:12px;font-weight:850;padding:11px 12px;white-space:nowrap;transition:.15s}.nav-btn:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}.nav-btn[aria-pressed="true"]{border-color:rgba(103,228,211,.36)}.nav-btn-danger{color:#ffbdc4}
+.hero{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:38px 0 31px;min-height:275px}.hero-main{max-width:840px;position:relative;z-index:1}.hero-kicker{color:#b5cfe0;font-size:10px;font-weight:950;letter-spacing:.19em;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.blink-dot{height:8px;width:8px;border-radius:50%;background:#a8faab;box-shadow:0 0 0 5px rgba(168,250,171,.09);animation:blink 2.1s ease-in-out infinite}.slash{color:#67859e}.level{background:rgba(255,209,103,.13);border:1px solid rgba(255,209,103,.25);color:#ffe29f;padding:4px 7px;border-radius:5px;letter-spacing:.08em}
+.hero h1{font-family:Impact,"Arial Black",ui-sans-serif,sans-serif;font-size:clamp(45px,5.3vw,79px);letter-spacing:.01em;line-height:.99;margin:16px 0 17px;font-weight:1000;text-shadow:0 10px 24px rgba(0,0,0,.2)}.hero h1 em{font-style:normal;color:var(--sun)}.hero p{font-size:14px;line-height:1.7;color:#c0d2df;max-width:680px;margin:0 0 18px}.hero p strong{color:#fff}.hero-tags{display:flex;flex-wrap:wrap;gap:7px}.hero-tags span{font-size:10px;font-weight:900;letter-spacing:.08em;padding:8px 11px;border:1px solid rgba(161,206,231,.18);background:rgba(255,255,255,.055);border-radius:40px}
+.boarding-card{flex:0 0 320px;width:320px;transform:rotate(6deg);background:#edeee8;color:#203248;border-radius:15px;box-shadow:0 19px 35px rgba(0,0,0,.35),0 0 0 4px rgba(255,255,255,.055);padding:17px 20px 0;position:relative;overflow:hidden}.boarding-card::after{content:"";position:absolute;width:80px;height:80px;border:7px solid rgba(56,111,133,.15);border-radius:50%;right:-31px;top:-28px}.ticket-top{display:flex;justify-content:space-between;letter-spacing:.18em;font-weight:950;font-size:9px;color:#52697b}.ticket-route{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.ticket-route>div:not(.route-mark){display:flex;flex-direction:column}.ticket-route small,.ticket-bottom small{font-size:9px;letter-spacing:.16em;font-weight:900;color:#8ca0a9}.ticket-route b{font-family:Impact,"Arial Black",sans-serif;font-size:55px;letter-spacing:.01em;line-height:1.15}.ticket-route span{font-size:9px;letter-spacing:.08em;font-weight:900}.route-mark{font-size:26px;color:#25b8bb;position:relative;align-self:center}.route-mark i{position:absolute;top:15px;left:-33px;width:90px;height:1px;border-top:2px dashed #7babb3;z-index:-1}.ticket-line{border-top:2px dashed #b8c5c9;margin:13px -20px}.ticket-bottom{display:flex;justify-content:space-between;gap:9px}.ticket-bottom>div{display:flex;flex-direction:column;gap:5px}.ticket-bottom strong{font-size:14px}.status-live{color:#089b91}.ticket-code{height:22px;text-align:center;letter-spacing:.18em;color:#546a75;font-size:17px;font-weight:950;line-height:22px;margin:12px -20px 0;background:#dce5e2;opacity:.82}
+.score-heading{margin:0 0 13px;display:flex;justify-content:space-between;align-items:end;gap:20px}.overline{font-size:10px;letter-spacing:.2em;font-weight:950;color:#89adc1}.board-led{display:inline-block;width:7px;height:7px;border-radius:50%;background:#b9f69c;margin-left:3px}.score-heading h2{font-family:Impact,"Arial Black",sans-serif;font-size:32px;margin:5px 0 0;letter-spacing:.035em;line-height:1}.score-heading h2 em{font-style:normal;color:var(--sun)}.overview-stats{display:flex;align-items:center;gap:12px}.stat{text-align:right;padding-right:12px;border-right:1px solid rgba(255,255,255,.12)}.stat>span{display:block;font-size:9px;letter-spacing:.15em;font-weight:900;color:#88abc0}.stat strong{display:block;margin-top:4px;font-size:23px;font-weight:1000;font-variant-numeric:tabular-nums}.stat strong b{font-size:23px}.stat strong small{font-size:12px;color:#92a9bb}.live-badge{border:1px solid rgba(120,222,175,.24);border-radius:100px;background:rgba(70,182,125,.09);color:#a4e9cb;font-size:10px;font-weight:950;letter-spacing:.10em;padding:10px 11px;white-space:nowrap}.live-badge span{color:#84f39b;margin-right:5px}
+.game-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lane{--accent:var(--aqua);--pale:#dbfff5;position:relative;min-width:0;background:linear-gradient(150deg,#152c47,#0d2038 75%);border:1px solid rgba(190,227,244,.24);border-top:5px solid var(--accent);border-radius:19px;box-shadow:0 19px 40px rgba(0,0,0,.2);overflow:hidden;display:flex;flex-direction:column}.lane[data-team="1"]{--accent:var(--pink);--pale:#ffecf0}.lane::before{content:"";position:absolute;right:-60px;top:-70px;height:215px;width:215px;border-radius:50%;border:1px solid rgba(255,255,255,.08);pointer-events:none}
+.lane-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 23px 12px}.gate-identity{display:flex;align-items:center;gap:13px;min-width:0}.gate-icon{width:53px;height:53px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:#10283a;font-family:Impact,"Arial Black",sans-serif;font-size:27px;box-shadow:0 5px 0 rgba(0,0,0,.16)}.gate-label{font-size:10px;font-weight:1000;color:var(--accent);letter-spacing:.19em;display:block;margin-bottom:3px}.team-name{min-width:0;width:min(28vw,330px);border:1px solid transparent;border-radius:7px;background:transparent;color:white;font-weight:1000;font-size:22px;padding:1px 4px;margin-left:-4px;text-overflow:ellipsis;outline:none}.team-name:hover,.team-name:focus{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.09)}.team-score{text-align:right;flex:0 0 auto}.team-score strong{font-family:Impact,"Arial Black",sans-serif;font-size:44px;color:var(--accent);line-height:.9}.team-score span{display:block;font-size:10px;font-weight:900;letter-spacing:.12em;color:#adc0d1;margin-top:7px}
+.lane-track{padding:0 23px 16px}.track-caption{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#96b3c6;letter-spacing:.15em;font-weight:1000;margin-bottom:9px}.track-caption b{color:#fff}.tile-grid{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:5px}.tile{height:35px;border:1px solid rgba(167,205,225,.2);background:rgba(255,255,255,.045);border-radius:6px;display:grid;place-items:center;color:#829bb0;font-size:10px;font-weight:900;position:relative}.tile.done{background:var(--accent);border-color:var(--accent);color:#10243a}.tile.done span{display:none}.tile.done::after{content:"✓";font-size:14px}.tile.current{border:2px solid var(--accent);color:var(--accent);background:rgba(255,255,255,.1);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent);animation:tileGlow 2s infinite}.tile.finish{border-color:rgba(255,211,117,.45)}
+.question-wrap{padding:0 15px 14px;flex:1;display:flex}.question-panel{min-height:316px;flex:1;display:flex;flex-direction:column;background:var(--cream);color:var(--ink);border-radius:15px;padding:21px 23px;box-shadow:inset 0 0 0 1px #fff,0 4px 15px rgba(0,0,0,.11)}.question-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}.question-type{background:var(--pale);padding:7px 9px;border-radius:6px;color:#25455c;font-size:10px;letter-spacing:.1em;font-weight:1000}.question-num{font-size:11px;font-weight:1000;color:#82919f;white-space:nowrap}.topic-label{font-size:10px;font-weight:950;letter-spacing:.16em;color:#778c9a;margin-bottom:8px}.question{font-size:clamp(18px,1.7vw,24px);line-height:1.27;font-weight:1000;letter-spacing:-.025em;margin:0 0 22px;overflow-wrap:anywhere}.answers{margin-top:auto;display:grid;gap:9px}.answer-btn{min-height:56px;border:1.5px solid #d8e0e5;border-radius:11px;padding:9px 13px;background:white;color:#263e52;display:flex;align-items:center;text-align:left;gap:12px;font-size:14px;font-weight:850;line-height:1.3;transition:background .14s,border-color .14s,transform .14s}.answer-btn:hover:not(:disabled){border-color:var(--accent);background:var(--pale);transform:translateY(-1px)}.answer-key{flex:0 0 30px;height:30px;width:30px;display:grid;place-items:center;border-radius:8px;background:#e7edf1;color:#20384b;font-weight:1000}.answer-btn.right{background:#dff9e9;border-color:#4ac37b;color:#186c44}.answer-btn.right .answer-key{background:#44c27c;color:white}.answer-btn.wrong{background:#ffe6e7;border-color:#e97e87;color:#a43446}.answer-btn.wrong .answer-key{background:#e96f7e;color:white}.answer-btn:disabled{opacity:1}.answer-btn.wrong{animation:shake .35s}
+.feedback{background:#e4f7ee;color:#245c43;margin-top:11px;padding:10px 12px;border-radius:8px;line-height:1.42;font-size:12px;font-weight:700}.feedback strong{display:block;margin-bottom:2px;font-size:12px}.feedback.bad{background:#fff0e9;color:#824242}.finished{justify-content:center;align-items:center;text-align:center;background:linear-gradient(130deg,#e6fff2,#fefefc)}.finish-icon{font-size:65px;margin-bottom:8px}.finished h3{font-size:29px;margin:0 0 8px;color:#146842;font-weight:1000}.finished p{font-size:14px;line-height:1.5;color:#456c5b;margin:0}.frozen{opacity:.62}
+.lane-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 23px 16px;border-top:1px dashed rgba(190,226,244,.19);font-size:10px;font-weight:900;color:#9cbbcf;letter-spacing:.13em}.lane-footer strong{color:white;font-size:14px;letter-spacing:0}.retry-count{color:#bed1dc}.retry-count b{color:var(--accent)}
+.teacher-strip{display:flex;gap:13px;align-items:center;margin:16px 0 28px;padding:14px 17px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.045)}.strip-icon{font-size:24px}.teacher-strip p{margin:0;flex:1;font-size:12px;color:#b3c9d7;line-height:1.65}.teacher-strip strong{color:white}.teacher-strip button{padding:0;border:0;background:none;color:#ffe297;font-weight:1000;text-decoration:underline}.strip-code{font-size:10px;white-space:nowrap;color:#8ea8bb;font-weight:1000;letter-spacing:.13em}
+.footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px;padding:25px 0 34px;color:#92abbe}.footer>span{font-size:10px;letter-spacing:.13em;font-weight:900}.footer>span span{color:var(--sun)}.footer strong{text-align:right;font-size:12px;color:#d2e2eb;font-weight:750}
+.dialog{background:transparent;border:0;padding:0;max-width:min(610px,calc(100vw - 32px));width:100%;color:#1e344a;box-shadow:0 30px 90px rgba(0,0,0,.5)}.dialog::backdrop{background:rgba(2,10,23,.84);backdrop-filter:blur(9px)}.dialog-panel{position:relative;background:#f8f9f6;border-radius:22px;padding:33px 37px;max-height:calc(100vh - 40px);overflow:auto}.dialog-close{position:absolute;right:19px;top:19px;border:0;border-radius:10px;background:#e8edf0;width:36px;height:36px;color:#334b60;font-weight:900}.dialog-label{font-size:10px;font-weight:1000;letter-spacing:.18em;color:#327c87;margin-bottom:8px}.dialog-label span{color:#ed916d}.dialog h2{font-family:Impact,"Arial Black",sans-serif;font-size:46px;letter-spacing:.015em;line-height:1;margin:0 0 15px}.dialog h2 em{font-style:normal;color:#ee986a}.dialog-lead{font-size:13px;line-height:1.65;color:#5f7282;margin:0 0 18px}.rule-list{list-style:none;margin:0;padding:0}.rule-list li{display:flex;gap:13px;align-items:flex-start;margin:16px 0}.rule-list li>span{flex:0 0 33px;height:33px;display:grid;place-items:center;background:#dcf5f1;color:#237b78;border-radius:8px;font-size:12px;font-weight:1000}.rule-list strong{font-size:14px}.rule-list p{font-size:12px;line-height:1.55;color:#627586;margin:3px 0}.dialog-tip{background:#fff1d0;border-radius:9px;padding:12px 14px;font-size:12px;line-height:1.5;margin:21px 0}.dialog-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}.dialog-actions.between{justify-content:space-between}.primary-btn,.secondary-btn{border:0;border-radius:10px;padding:12px 17px;font-size:13px;font-weight:1000}.primary-btn{background:var(--sun);color:#173048;box-shadow:0 3px 0 #e9ab44}.primary-btn:hover{background:#ffe28a}.secondary-btn{background:#e3ecef;color:#2c5066}.secondary-btn:hover{background:#d4e3e7}
+.debate-card{background:linear-gradient(145deg,#153755,#0d2844);color:white;border-radius:16px;padding:23px 25px;margin:20px 0;min-height:210px;display:flex;flex-direction:column}.debate-meta{display:flex;justify-content:space-between;font-size:10px;font-weight:950;letter-spacing:.15em;color:#79e8d7}.debate-card p{font-size:21px;line-height:1.4;font-weight:850;margin:25px 0;flex:1}.debate-nudge{font-size:9px;letter-spacing:.16em;font-weight:950;color:#b9d2e3}
+.winner-overlay{position:fixed;inset:0;z-index:50;background:rgba(2,11,25,.92);display:grid;place-items:center;overflow:auto;padding:20px;backdrop-filter:blur(10px)}.winner-panel{z-index:2;position:relative;width:100%;max-width:620px;border:2px solid #ffda7d;border-radius:22px;background:radial-gradient(circle at 50% 3%,#2a5261,#112743 54%,#0b213c);box-shadow:0 0 100px rgba(255,200,80,.18);padding:34px 26px 30px;text-align:center;animation:popIn .4s ease-out}.winner-pretitle{color:#ffe094;font-size:11px;letter-spacing:.22em;font-weight:1000}.winner-cup{font-size:90px;margin:7px 0;filter:drop-shadow(0 14px 12px rgba(0,0,0,.3));animation:bounce 1.7s ease-in-out infinite}.winner-panel h2{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(46px,6vw,64px);line-height:.98;margin:8px 0 17px;letter-spacing:.02em}.winner-panel h2 em{font-style:normal;color:var(--sun)}.win-team{display:inline-block;max-width:100%;overflow-wrap:anywhere;transform:rotate(-2deg);background:var(--sun);color:#163048;padding:11px 22px;font-size:25px;font-weight:1000;border-radius:6px;box-shadow:5px 6px 0 rgba(0,0,0,.22)}.winner-panel>p{font-size:14px;color:#c5d8e7;line-height:1.7;max-width:430px;margin:20px auto}.win-scores{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap}.win-score{border:1px solid rgba(255,255,255,.19);background:rgba(255,255,255,.06);border-radius:9px;padding:9px 13px;font-size:12px;color:#d2e6ef}.win-score strong{color:white;font-size:15px}.winner-actions{display:flex;gap:11px;justify-content:center}.winner-actions .secondary-btn{background:#2d4e68;color:#e8f1f8}.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}.confetti-bit{position:absolute;top:-25px;width:10px;height:18px;animation:fall linear infinite;opacity:.95}
+.screenreader{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@keyframes blink{50%{opacity:.5}}@keyframes tileGlow{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 12%,transparent)}}@keyframes shake{25%{transform:translateX(-3px)}50%{transform:translateX(3px)}75%{transform:translateX(-2px)}}@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}@keyframes bounce{50%{transform:translateY(-7px) rotate(3deg)}}@keyframes fall{to{transform:translate3d(130px,110vh,0) rotate(850deg)}}
+body.board-view .hero{display:none}body.board-view .topbar{min-height:69px}body.board-view .score-heading{margin:18px 0 12px}body.board-view .lane-header{padding-top:15px;padding-bottom:9px}body.board-view .lane-track{padding-bottom:10px}body.board-view .question-panel{min-height:280px}body.board-view .question{font-size:21px}body.board-view .tile{height:29px}
+@media(max-width:1180px){.boarding-card{flex-basis:260px;width:260px;transform:rotate(5deg) scale(.9);transform-origin:center right}.hero h1{font-size:clamp(48px,5.5vw,68px)}.nav-btn{padding:10px}.brand strong{font-size:14px}.tile-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.tile{height:24px}.question{font-size:20px}}
+@media(max-width:900px){.topbar{align-items:flex-start;flex-direction:column;padding:17px 0;gap:14px}.actions{justify-content:flex-start}.hero{min-height:unset}.boarding-card{display:none}.game-board{grid-template-columns:1fr}.tile-grid{grid-template-columns:repeat(15,minmax(0,1fr))}.tile{height:35px}.team-name{width:min(55vw,400px)}.question-panel{min-height:285px}.question{font-size:24px}.score-heading{align-items:center}.hero h1{font-size:clamp(48px,8vw,72px)}}
+@media(max-width:600px){.shell{padding:0 13px}.brand-icon{height:40px;width:40px;flex:0 0 40px}.brand strong{font-size:13px}.brand-label{font-size:8px}.actions{gap:5px}.nav-btn{font-size:11px;padding:9px}.nav-btn span{display:none}.hero{padding:30px 0 24px}.hero h1{font-size:clamp(41px,10vw,61px)}.hero-kicker{font-size:9px;letter-spacing:.1em}.hero p{font-size:13px}.hero-tags span{font-size:9px}.score-heading{flex-direction:column;align-items:flex-start;gap:12px}.overview-stats{width:100%;justify-content:space-between}.score-heading h2{font-size:29px}.lane-header{padding:17px 15px 11px}.gate-icon{width:42px;height:42px;font-size:23px}.team-name{font-size:17px;width:min(52vw,260px)}.team-score strong{font-size:35px}.lane-track{padding:0 15px 11px}.tile-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.tile{height:30px}.question-wrap{padding:0 10px 10px}.question-panel{padding:16px;min-height:300px}.question{font-size:19px}.answer-btn{font-size:12px}.lane-footer{padding:12px 15px}.teacher-strip{flex-wrap:wrap}.strip-code{margin-left:38px}.footer{flex-direction:column;align-items:flex-start}.footer strong{text-align:left}.dialog-panel{padding:28px 22px}.dialog h2{font-size:38px}.debate-card p{font-size:19px}.winner-panel{padding:26px 15px}.winner-cup{font-size:74px}.win-team{font-size:21px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* MARITIME ENGLISH EDITION: nautical chart, deep sea, port red and starboard green. */
+:root{--bg:#041c32;--panel:#082c45;--sun:#ffd66d;--aqua:#ff8e86;--pink:#79e7bd;--cream:#f4fbfb;--ink:#102a3e}
+body{background:radial-gradient(ellipse 66% 35% at 90% 7%,rgba(16,160,178,.20),transparent),radial-gradient(ellipse 58% 41% at 2% 54%,rgba(23,104,170,.14),transparent),linear-gradient(180deg,#031b30 0%,#062944 57%,#03192c 100%)}
+body::before{background-image:radial-gradient(circle at 10% 20%,rgba(150,231,239,.10) 1.5px,transparent 2px),radial-gradient(circle at 81% 40%,rgba(150,231,239,.08) 1.5px,transparent 2px),linear-gradient(to right,rgba(126,194,208,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(126,194,208,.035) 1px,transparent 1px);background-size:210px 165px,270px 210px,65px 65px,65px 65px}
+.brand-icon{background:#ffda76;color:#092b42;transform:rotate(-5deg)}
+.hero{overflow:hidden}.hero::after{content:"";position:absolute;z-index:0;bottom:0;left:-5%;right:-5%;height:35px;opacity:.35;background:radial-gradient(ellipse 27px 12px at 25px 29px,transparent 24px,#32adcb 25px,#32adcb 27px,transparent 28px) repeat-x;background-size:52px 35px;animation:swell 8s linear infinite}
+.hero h1 em{color:#ffe08e}.hero-tags span{border-color:rgba(98,210,222,.24);background:rgba(18,126,149,.13)}
+.boarding-card{background:#e8f7f5;transform:rotate(5deg);box-shadow:0 20px 44px rgba(0,0,0,.41),0 0 0 5px rgba(113,223,232,.06)}
+.boarding-card::after{border-color:rgba(16,100,123,.13)}.ticket-route b{color:#0a4662}.ticket-top{color:#437a8d}.ticket-route span{color:#5e8a9b}.route-mark{color:#0caac1}.route-mark i{border-top-color:#74b7c1}.ticket-code{background:#cbe8e7;color:#347b89;font-size:15px}.status-live{color:#168c86}
+.lane{background:linear-gradient(150deg,#11415d,#082b47 72%);border-color:rgba(145,224,229,.22);box-shadow:0 19px 45px rgba(0,9,22,.35)}
+.lane::before{content:"⚓";width:auto;height:auto;border:0;right:22px;top:7px;font-size:102px;color:rgba(177,236,240,.065);font-family:serif}
+.lane[data-team="1"]{--accent:#78e1ae;--pale:#defbf0}.lane[data-team="0"]{--accent:#ff948b;--pale:#fff0e8}
+.tile-grid{grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}.tile{height:27px}.tile.done::after{content:"⚓";font-size:13px}.tile.current{background:rgba(22,160,187,.15)}
+.question-panel{background:linear-gradient(155deg,#fbfffe,#f2fbfa);box-shadow:inset 0 0 0 1px white,0 4px 14px rgba(2,21,35,.13)}
+.question-type{background:var(--pale);color:#19465d}.question-type::before{content:"🌊 ";font-size:11px}.question::before{content:"⚓ ";color:#0aa7c0;font-size:.82em}
+.answer-btn{background:#fff;border-color:#c7e1e4;color:#16354a}.answer-btn:hover:not(:disabled){background:#ecfbfb}.answer-key{border:3px solid #dbeaed;background:#fff;color:#164e62;border-radius:50%;height:32px;width:32px;flex-basis:32px;box-shadow:inset 0 0 0 2px #fff}
+.answer-btn.right .answer-key{background:#2fbd80;border-color:#c1f0d7}.answer-btn.wrong .answer-key{background:#eb737b;border-color:#ffd8d8}
+.score-heading h2 em{color:#9becdb}.score-heading h2{font-size:clamp(30px,3.1vw,42px)}
+.dialog-panel{background:#f2fbfa}.dialog-label{color:#287a8c}.dialog h2 em{color:#179cad}.rule-list li>span{background:#d8f6ef;color:#157a72}.dialog-tip{background:#e2f8ec;color:#25596a}.debate-card{background:linear-gradient(150deg,#135a75,#092e52)}
+.winner-panel{background:radial-gradient(circle at 50% 0%,#217087,#0b3756 58%,#071f3a);border-color:#96e5dc}.winner-panel h2 em{color:#ffdc7f}
+.nav-btn[aria-pressed="true"]{border-color:rgba(124,227,191,.42)}
+@keyframes swell{to{background-position-x:520px}}
+@media(max-width:1180px){.tile-grid{grid-template-columns:repeat(10,minmax(0,1fr))}.tile{height:25px}}
+@media(max-width:600px){.tile-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.tile{height:31px}}
+
+</style>
+  
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">⚓</div>
+        <div class="brand-copy">
+          <span class="brand-label">THE MARITIME ENGLISH CHALLENGE <span>◆</span> CREW 020</span>
+          <strong>Maritime English</strong>
+        </div>
+      </div>
+      <nav class="actions" aria-label="Game controls">
+        <button id="rules-open" class="nav-btn" type="button">ⓘ <span>Captain's briefing</span></button>
+        <button id="debate-open" class="nav-btn" type="button">⚑ <span>Signal room</span></button>
+        <button id="sound-toggle" class="nav-btn" type="button" aria-pressed="true">♫ <span>Sound on</span></button>
+        <button id="view-toggle" class="nav-btn" type="button" aria-pressed="false">▣ <span>Board view</span></button>
+        <button id="reset-open" class="nav-btn nav-btn-danger" type="button">↻ <span>Reset</span></button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-main">
+          <div class="hero-kicker"><span class="blink-dot"></span> NAVIGATION CHALLENGE <span class="slash">/</span> PORT CREW VS STARBOARD CREW <span class="level">40 TASKS</span></div>
+          <h1 id="hero-title">ALL HANDS<br><em>ON DECK! ⚓</em></h1>
+          <p>Two crews. Twenty nautical checkpoints each. From helm orders to distress signals, every correct answer moves your crew closer to port. <strong>First to complete all 20 wins the captain’s trophy.</strong></p>
+          <div class="hero-tags"><span>🧭 HELM COMMANDS</span><span>🚢 VESSEL CONDITIONS</span><span>📡 MARITIME SIGNALS</span></div>
+        </div>
+        <div class="boarding-card" aria-hidden="true">
+          <div class="ticket-top"><span>CAPTAIN'S LOG</span><span>VOYAGE 020 ⚓</span></div>
+          <div class="ticket-route"><div><small>START</small><b>00</b><span>DEPARTURE</span></div><div class="route-mark">⛵<i></i></div><div><small>FINISH</small><b>20</b><span>SAFE HARBOUR</span></div></div>
+          <div class="ticket-line"></div>
+          <div class="ticket-bottom"><div><small>CREWS</small><strong>A / B</strong></div><div><small>CHECKPOINTS</small><strong>20</strong></div><div><small>STATUS</small><strong class="status-live">UNDERWAY</strong></div></div>
+          <div class="ticket-code">⚓ 〰️ 🛟 〰️ ⚓ 〰️ 🛟 〰️ ⚓</div>
+        </div>
+      </section>
+
+      <section class="score-heading" aria-label="Race overview">
+        <div><span class="overline">THE BRIDGE <span class="board-led"></span> ALL STATIONS READY</span><h2>THE GREAT <em>SEA RACE</em></h2></div>
+        <div class="overview-stats"><div class="stat"><span>VOYAGE TIME</span><strong id="timer">00:00</strong></div><div class="stat"><span>CLEARED</span><strong><b id="total-score">0</b><small> / 40</small></strong></div><div class="live-badge"><span>●</span> CREWS LIVE</div></div>
+      </section>
+
+      <section id="game-board" class="game-board" aria-label="Two team race lanes"></section>
+
+      <div class="teacher-strip"><span class="strip-icon">🛟</span><p><strong>Captain's tip:</strong> Ask crew members to repeat the nautical term aloud before choosing A or B. Wrong answers bring a short pause and a useful explanation. Extra radio and bridge scenarios await in the <button id="debate-inline" type="button">Signal room</button> (no points).</p><span class="strip-code">20 MILES TO VICTORY</span></div>
+    </main>
+
+    <footer class="footer"><span>⚓ MARITIME ENGLISH <span aria-hidden="true">✦</span> CLEAR COMMUNICATION SAVES LIVES</span><strong>Evangelia Domvrou - Teacher of English Language and Literature</strong></footer>
+  </div>
+
+  <dialog id="rules-dialog" class="dialog">
+    <div class="dialog-panel">
+      <button class="dialog-close" type="button" data-close="rules-dialog" aria-label="Close briefing">✕</button>
+      <div class="dialog-label">CAPTAIN'S BRIEFING 001</div>
+      <h2>Ready to <em>set sail?</em></h2>
+      <p class="dialog-lead">Forty questions from your Maritime English study slides. Test helm orders, vessel conditions, standard acronyms and safety expressions in realistic situations.</p>
+      <ol class="rule-list">
+        <li><span>01</span><div><strong>Join your crew.</strong><p>Two crews. Twenty different questions each. Click a crew name to rename it.</p></div></li>
+        <li><span>02</span><div><strong>Call the answer: A or B.</strong><p>Every correct choice earns one nautical mile and moves your ship to the next checkpoint.</p></div></li>
+        <li><span>03</span><div><strong>Wrong course? Correct it.</strong><p>A foghorn sounds, an explanation appears and your crew pauses briefly before trying again.</p></div></li>
+        <li><span>04</span><div><strong>Reach 20 and claim the trophy.</strong><p>The first crew to complete every challenge earns a ship's bell celebration, confetti and an original victory tune.</p></div></li>
+      </ol>
+      <div class="dialog-tip">🎛️ Sounds are generated inside your browser: bridge chimes, a foghorn and an upbeat victory fanfare. The quiz works offline. Classroom practice does not replace official operational procedures.</div>
+      <div class="dialog-actions"><button id="fanfare-preview" class="secondary-btn" type="button">♫ Test the victory tune</button><button class="primary-btn" type="button" data-close="rules-dialog">Let's go →</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="debate-dialog" class="dialog">
+    <div class="dialog-panel">
+      <button class="dialog-close" type="button" data-close="debate-dialog" aria-label="Close debate lounge">✕</button>
+      <div class="dialog-label">THE SIGNAL ROOM <span>◆</span> SPEAK LIKE A CREW</div>
+      <h2>Bridge <em>comms.</em></h2>
+      <p class="dialog-lead">Practise giving clear orders, explaining hazards and checking understanding. These extra communication scenarios are for speaking practice, not points.</p>
+      <div class="debate-card"><div class="debate-meta"><span id="debate-tag">BRIDGE ORDER</span><span id="debate-count">01 / 08</span></div><p id="debate-prompt"></p><div class="debate-nudge">YOUR MISSION: USE CLEAR MARITIME ENGLISH</div></div>
+      <div class="dialog-actions between"><button id="debate-prev" class="secondary-btn" type="button">← Previous</button><button id="debate-next" class="primary-btn" type="button">Next card →</button></div>
+    </div>
+  </dialog>
+
+  <div id="winner-overlay" class="winner-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+      <div class="winner-panel"><div class="winner-pretitle">⚓ THE CAPTAIN'S ANNOUNCEMENT ⚓</div><div class="winner-cup" aria-hidden="true">🏆</div><h2 id="win-title">CREW <em>CHAMPIONS!</em></h2><div id="win-team" class="win-team"></div><p>Twenty nautical challenges cleared! Your crew stayed on course and reached the finish first. All hands, celebrate!</p><div id="win-scores" class="win-scores"></div><div class="winner-actions"><button id="replay" class="primary-btn" type="button">↻ New voyage</button><button id="see-board" class="secondary-btn" type="button">View the chart</button></div></div>
+  </div>
+  <div class="screenreader" id="announcer" role="status" aria-live="polite"></div>
+<!-- EDIT QUESTIONS BELOW: SEARCH FOR "const questions" -->
+<script>
+(() => {
+  'use strict';
+
+  // EDIT THE QUIZ HERE: each q() has a prompt, two choices, a correct choice
+  // (0 = A, 1 = B), and the explanation shown after a team answers.
+  const q = (topic, type, prompt, optionA, optionB, correct, explanation) => ({topic,type,prompt,options:[optionA,optionB],correct,explanation});
+
+  const questions = [
+    [
+      q('⚓ HELMSMANSHIP','EQUIPMENT','On the bridge, what is the helm?', 'The steering control or wheel', 'The movable rudder blade at the stern',0,'The helm is the steering control. The rudder is the blade that turns the vessel.'),
+      q('🧭 HELM ORDERS','PORT SIDE','The officer orders “Port five.” What must the helmsman do?', 'Change the compass heading to 005°', 'Apply and hold 5° of port rudder',1,'Port five is a rudder-angle order: five degrees to the left.'),
+      q('🧭 HELM ORDERS','BRIDGE SCENARIO','The bow is still swinging. The officer says “Meet her.” What is the aim?', 'Use appropriate opposite rudder to check the swing', 'Increase speed until the swing stops',0,'Meet her means counteracting the current swing of the bow.'),
+      q('🧭 HELM ORDERS','COURSE CONTROL','What does “Steady as she goes” require?', 'Return to the heading planned before the voyage', 'Maintain the compass heading shown at the moment of the order',1,'The helmsman should steady on the present compass heading.'),
+      q('🧭 NAVIGATION','VOCABULARY','What does the heading of a vessel describe?', 'The direction in which its bow points', 'Its exact movement over the seabed regardless of currents',0,'Wind and current may change actual movement, while heading describes where the bow points.'),
+      q('🚢 VESSEL CONDITIONS','IDENTIFY THE CONDITION','A vessel drifts uncontrollably with wind or current. It is…', 'moored.', 'adrift.',1,'Adrift means being carried without effective control by wind, tide or current.'),
+      q('🚢 VESSEL CONDITIONS','SAFETY VOCABULARY','What does NUC stand for in this context?', 'Not Under Command', 'Navigating Under Control',0,'NUC is Not Under Command, a condition involving inability to manoeuvre as required.'),
+      q('🚢 VESSEL CONDITIONS','TRUE OR FALSE','A vessel can be “underway” even when it has no speed through the water.', 'False', 'True',1,'Underway means it is not at anchor, made fast to shore or aground; it need not be moving through the water.'),
+      q('🚢 VESSEL CONDITIONS','WORD CHOICE','A capsized ship has…', 'overturned, but has not necessarily sunk.', 'only lost its radio connection.',0,'Capsized means overturned. A capsized vessel can remain afloat.'),
+      q('🚢 VESSEL CONDITIONS','IN PORT','A ship secured to a berth with lines is described as…', 'derelict.', 'moored.',1,'Moored refers to a vessel secured by lines or a mooring arrangement.'),
+      q('📡 ACRONYMS','RADIO SAFETY','What is the full meaning of GMDSS?', 'Global Maritime Distress and Safety System', 'General Marine Departure Scheduling Service',0,'GMDSS combines terrestrial and satellite communications for distress and maritime safety.'),
+      q('📡 ACRONYMS','COLLISION AVOIDANCE','On a radar display, CPA refers to…', 'the current position of the nearest harbour.', 'the predicted closest distance between vessels.',1,'CPA means Closest Point of Approach, assuming the motion information remains unchanged.'),
+      q('📡 ACRONYMS','VOYAGE PLANNING','What is the ETA of a vessel?', 'Its estimated time of arrival', 'Its emergency towing arrangement',0,'ETA means Estimated Time of Arrival. Time-zone information should be clear in communications.'),
+      q('📡 ACRONYMS','DISTRESS EQUIPMENT','What is an EPIRB used for?', 'Measuring fuel flow in the engine room', 'Sending a satellite distress alert with identification data',1,'An Emergency Position-Indicating Radio Beacon is used in distress situations.'),
+      q('📡 ACRONYMS','CARGO SAFETY','On lifting equipment, SWL identifies…', 'the safe working load under specified conditions.', 'the ship’s waterline length.',0,'Safe Working Load specifies a permitted working load for equipment.'),
+      q('📋 WORD COMBINATIONS','BRIDGE WATCH','What are the master’s standing orders?', 'Requests that expire after one watch', 'Instructions that remain in force for the bridge watch',1,'Standing orders are ongoing instructions, such as those given by the master to watchkeepers.'),
+      q('🔥 EMERGENCY TEAMS','ONBOARD ROLES','A fire party is the crew group responsible for…', 'responding to a fire aboard ship.', 'preparing the ship’s entertainment programme.',0,'The fire party is an organised firefighting group on board.'),
+      q('📦 CARGO','STABILITY','Why is shifting cargo dangerous?', 'It always improves balance in rough seas.', 'Movement from its secured position can affect stability.',1,'Cargo that shifts can change a vessel’s stability.'),
+      q('🧭 NAVIGATION','CARDINAL POINTS','Which set contains all four cardinal points?', 'North, East, South, West', 'Bow, Stern, Port, Rudder',0,'The cardinal points are the four main compass directions.'),
+      q('⚓ DECK EQUIPMENT','VOCABULARY','What is the purpose of an anchor?', 'To measure the ship’s engine speed', 'To help hold a vessel by engaging the seabed',1,'An anchor helps keep a vessel in position through its connection with the seabed.')
+    ],
+    [
+      q('⚓ HELMSMANSHIP','CREW ROLE','Who is the helmsman?', 'The crew member who operates the steering control and repeats helm orders', 'The shore employee who issues cargo invoices',0,'The helmsman steers the ship and normally repeats the helm orders received.'),
+      q('🧭 HELM ORDERS','STARBOARD SIDE','“Starboard ten” instructs the helmsman to…', 'change the heading to 010°.', 'apply and hold 10° of starboard rudder.',1,'The number is the rudder angle, and starboard is the right side.'),
+      q('🧭 HELM ORDERS','EMERGENCY TURN','What does “Hard-a-port” mean?', 'Apply the full permitted port rudder angle', 'Reduce the port rudder angle to zero',0,'Hard-a-port uses the maximum permitted port rudder angle for that vessel.'),
+      q('🧭 HELM ORDERS','RUDDER ADJUSTMENT','The rudder is at 20° starboard. The officer says “Ease to ten.” What follows?', 'Switch immediately to 10° port', 'Reduce to 10° starboard and hold it',1,'Ease to ten reduces the current rudder angle to ten degrees on the same side.'),
+      q('🧭 HELM ORDERS','COURSE LIMIT','What does “Nothing to starboard” warn against?', 'Allowing the bow to deviate to the right of the required heading', 'Using a compass on the bridge',0,'The bow must not move farther to starboard than the required direction.'),
+      q('🚢 VESSEL CONDITIONS','OPERATING RESTRICTION','A vessel is “hampered” by the nature of its work. The precise COLREG term is…', 'NUC: Not Under Command.', 'RAM: Restricted in Ability to Manoeuvre.',1,'RAM applies when the nature of operations restricts manoeuvring ability.'),
+      q('🚢 VESSEL CONDITIONS','IDENTIFY THE CONDITION','An abandoned vessel remains floating. According to the study file, it is…', 'derelict.', 'aground.',0,'Derelict describes an abandoned vessel that remains afloat in the exercise definition.'),
+      q('🚢 VESSEL CONDITIONS','BREAKDOWN','A vessel cannot continue its voyage because of a serious failure. It is…', 'moored.', 'disabled.',1,'Disabled describes a vessel unable to proceed because of a breakdown or damage.'),
+      q('🚢 VESSEL CONDITIONS','SEABED CONTACT','A vessel resting on the seabed is…', 'aground.', 'underway.',0,'Aground means the vessel is in contact with and supported by the seabed.'),
+      q('🚢 VESSEL CONDITIONS','VOCABULARY','Which term means a ruined or sunken ship, or its remains?', 'Afloat', 'Wreck',1,'A wreck is a badly damaged or sunken vessel, or its remains.'),
+      q('📡 ACRONYMS','SEARCH & RESCUE','What does RCC stand for?', 'Rescue Coordination Centre', 'Radar Course Calculator',0,'The Rescue Coordination Centre coordinates search and rescue operations.'),
+      q('📡 ACRONYMS','TRAFFIC SERVICES','Which service monitors and helps manage vessel traffic?', 'SWL', 'VTS',1,'Vessel Traffic Services monitor and support the management of maritime traffic.'),
+      q('📡 ACRONYMS','TRAFFIC LANES','What does TSS describe?', 'A Traffic Separation Scheme with lanes for opposing flows', 'A Temporary Ship Salary system',0,'A Traffic Separation Scheme separates traffic streams in designated lanes.'),
+      q('🛢️ OFFSHORE OPERATIONS','WORD COMBINATION','A “rig move” means…', 'inspecting the ship’s anchor chain.', 'moving an offshore drilling installation to another location.',1,'Rig move refers to the transfer of an offshore drilling rig.'),
+      q('⚓ NAVAL OPERATIONS','WORD COMBINATION','What is an ordnance exercise?', 'A planned naval weapons or firing exercise', 'A routine roll call of the crew',0,'An ordnance exercise involves training with naval weapons in a designated area.'),
+      q('🔒 SECURITY','ACCESS CONTROL','What is a restricted area?', 'Any open public beach', 'An area with entry limits for safety or security',1,'Restricted areas have controlled access for safety or security reasons.'),
+      q('🚨 EMERGENCY COMMS','ALERT TYPE','What should a distress alert indicate?', 'A grave and immediate danger requiring assistance', 'A routine change of meal times',0,'A distress alert signals serious and immediate danger.'),
+      q('🛟 LIFE-SAVING','MUSTER POINT','What does “lifeboat station” refer to?', 'The ship’s chart room', 'A designated position for accessing and embarking in a lifeboat',1,'A lifeboat station is an assigned place associated with lifeboat access and embarkation.'),
+      q('📋 CREW CHECK','WORD COMBINATION','During a roll call, the officer…', 'checks names and counts people present.', 'measures the vessel’s rolling motion.',0,'Roll call is an attendance check of crew or passengers.'),
+      q('🔎 SEARCH & RESCUE','SEARCH PLANNING','What is a search pattern?', 'A decoration on the side of a rescue boat', 'An organised set of tracks to cover a search area',1,'A search pattern structures the routes used to examine an area systematically.')
+    ]
+  ];
+
+  const debates = [
+    {tag:'🎙️ BRIDGE ORDERS',prompt:'The officer orders “Starboard ten.” Repeat the order as helmsman, then explain what you would physically change.'},
+    {tag:'🧭 COURSE CONTROL',prompt:'Explain the difference between “Meet her” and “Steady as she goes” using an example of a swinging bow.'},
+    {tag:'📡 DISTRESS COMMUNICATION',prompt:'Your vessel needs urgent help. Explain why a distress alert must be unambiguous and what the bridge team should communicate.'},
+    {tag:'🌊 SEA CONDITIONS',prompt:'Explain the difference between a current and a tide. Which one could carry an adrift vessel away?'},
+    {tag:'⚓ SHIP ORIENTATION',prompt:'Stand facing the bow. Point out port, starboard, fore and aft to a new crew member.'},
+    {tag:'🚢 VESSEL STATUS',prompt:'Describe the difference between afloat, aground and capsized. Can a vessel be both capsized and afloat?'},
+    {tag:'🛟 SAFETY DRILL',prompt:'Give a short announcement directing crew members to their lifeboat station for a roll call.'},
+    {tag:'🧭 CLEAR ENGLISH',prompt:'A new trainee confuses helm, rudder and heading. Explain all three in simple, precise Maritime English.'}
+  ];
+
+  const initialTeams = [{name:'Port Crew',gate:'A',icon:'🔴'},{name:'Starboard Crew',gate:'B',icon:'🟢'}];
+
+  const STORAGE='maritime-english-crew-race-v1';
+  const board=document.getElementById('game-board');
+  const announcer=document.getElementById('announcer');
+  const overlay=document.getElementById('winner-overlay');
+  let audio=null;
+  let debateIndex=0;
+
+  const fresh=()=>({teams:initialTeams.map(t=>({name:t.name,index:0,retries:0,busy:false,result:null})),sound:true,winner:null,startedAt:null,finishedAt:null});
+  let game=fresh();
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE));
+    if(saved&&Array.isArray(saved.teams)&&saved.teams.length===2){
+      game.teams=saved.teams.map((t,i)=>({name:typeof t.name==='string'&&t.name.trim()?t.name.slice(0,32):initialTeams[i].name,index:Math.max(0,Math.min(20,Number.isInteger(t.index)?t.index:0)),retries:Math.max(0,Number.isInteger(t.retries)?t.retries:0),busy:false,result:null}));
+      game.sound=saved.sound!==false;
+      game.winner=Number.isInteger(saved.winner)&&saved.winner>=0&&saved.winner<2?saved.winner:null;
+      game.startedAt=Number.isFinite(saved.startedAt)?saved.startedAt:null;
+      game.finishedAt=Number.isFinite(saved.finishedAt)?saved.finishedAt:null;
+    }
+  }catch(_){/* Still playable when local storage is unavailable. */}
+  const save=()=>{try{localStorage.setItem(STORAGE,JSON.stringify({teams:game.teams,sound:game.sound,winner:game.winner,startedAt:game.startedAt,finishedAt:game.finishedAt}))}catch(_){}};
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function tileHtml(team){return Array.from({length:20},(_,n)=>`<div class="tile ${n<team.index?'done':n===team.index?'current':''} ${n===19?'finish':''}" title="Nautical mile ${n+1}${n<team.index?' complete':''}"><span>${String(n+1).padStart(2,'0')}</span></div>`).join('')}
+  function questionHtml(team,i){
+    if(team.index===20)return `<div class="question-panel finished"><div class="finish-icon">⚓🏅</div><h3>SAFE HARBOUR!</h3><p>All 20 nautical challenges completed.<br>Bravo, crew!</p></div>`;
+    const x=questions[i][team.index], locked=team.busy||game.winner!==null, r=team.result;
+    return `<div class="question-panel ${game.winner!==null?'frozen':''}">
+      <div class="question-top"><span class="question-type">${esc(x.type)}</span><span class="question-num">QUESTION ${String(team.index+1).padStart(2,'0')} / 20</span></div>
+      <span class="topic-label">${esc(x.topic)}</span><p class="question">${esc(x.prompt)}</p>
+      <div class="answers">${x.options.map((opt,k)=>`<button type="button" class="answer-btn ${r&&r.choice===k?(r.correct?'right':'wrong'):''}" data-answer="${i}:${k}" ${locked?'disabled':''}><span class="answer-key">${k===0?'A':'B'}</span><span>${esc(opt)}</span></button>`).join('')}</div>
+      ${r?`<div role="status" class="feedback ${r.correct?'':'bad'}"><strong>${r.correct?'⚓ CORRECT COURSE — WELL DONE!':'🌊 WRONG COURSE — TRY AGAIN!'}</strong>${esc(x.explanation)}</div>`:''}
+    </div>`;
+  }
+  function laneHtml(t,i){return `<article class="lane" data-team="${i}" aria-label="Gate ${initialTeams[i].gate}: ${esc(t.name)}">
+    <div class="lane-header"><div class="gate-identity"><div class="gate-icon" aria-hidden="true">${i===0?'⚓':'🚢'}</div><div><span class="gate-label">${i===0?'PORT':'STARBOARD'} WATCH ${initialTeams[i].icon} / CREW ${i+1}</span><input type="text" maxlength="32" class="team-name" aria-label="Rename crew ${i+1}" title="Click to rename" data-name="${i}" value="${esc(t.name)}" /></div></div><div class="team-score" aria-label="${t.index} out of 20 points"><strong>${t.index}</strong><span>/ 20 POINTS</span></div></div>
+    <div class="lane-track"><div class="track-caption"><span>🌊 20 NAUTICAL CHECKPOINTS</span><b>⚓ HARBOUR</b></div><div class="tile-grid" aria-label="${t.index} checkpoints complete">${tileHtml(t)}</div></div>
+    <div class="question-wrap">${questionHtml(t,i)}</div>
+    <div class="lane-footer"><span>NAUTICAL MILES <strong>${t.index}/20</strong></span><span class="retry-count">COURSE CORRECTIONS <b>${t.retries}</b></span></div>
+  </article>`}
+  function draw(){
+    board.innerHTML=game.teams.map(laneHtml).join('');
+    document.getElementById('total-score').textContent=String(game.teams.reduce((sum,t)=>sum+t.index,0));
+    const sound=document.getElementById('sound-toggle');
+    sound.innerHTML=`♫ <span>Sound ${game.sound?'on':'off'}</span>`;sound.setAttribute('aria-pressed',String(game.sound));
+    updateTimer();
+  }
+  function updateTimer(){
+    const end=game.finishedAt||Date.now();
+    const secs=game.startedAt?Math.max(0,Math.floor((end-game.startedAt)/1000)):0;
+    document.getElementById('timer').textContent=`${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')}`;
+  }
+  setInterval(updateTimer,1000);
+
+  // Original browser-generated audio. No commercial song or sound file is used.
+  function context(){
+    if(!game.sound)return null;
+    try{if(!audio)audio=new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});return audio}catch(_){return null}
+  }
+  function tone(freq,start,duration,volume=.08,wave='triangle'){
+    const ctx=context();if(!ctx)return;
+    const osc=ctx.createOscillator(),amp=ctx.createGain();osc.type=wave;osc.frequency.setValueAtTime(freq,start);
+    amp.gain.setValueAtTime(.0001,start);amp.gain.exponentialRampToValueAtTime(volume,start+.018);amp.gain.exponentialRampToValueAtTime(.0001,start+duration);
+    osc.connect(amp);amp.connect(ctx.destination);osc.start(start);osc.stop(start+duration+.025);
+  }
+  function kick(start){
+    const ctx=context();if(!ctx)return;
+    const osc=ctx.createOscillator(),amp=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(145,start);osc.frequency.exponentialRampToValueAtTime(45,start+.17);
+    amp.gain.setValueAtTime(.0001,start);amp.gain.exponentialRampToValueAtTime(.18,start+.006);amp.gain.exponentialRampToValueAtTime(.0001,start+.20);
+    osc.connect(amp);amp.connect(ctx.destination);osc.start(start);osc.stop(start+.21);
+  }
+  function hiHat(start){
+    const ctx=context();if(!ctx)return;
+    const len=.07,buffer=ctx.createBuffer(1,Math.ceil(ctx.sampleRate*len),ctx.sampleRate),data=buffer.getChannelData(0);
+    for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1);
+    const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();source.buffer=buffer;filter.type='highpass';filter.frequency.value=4600;
+    gain.gain.setValueAtTime(.055,start);gain.gain.exponentialRampToValueAtTime(.0001,start+len);
+    source.connect(filter);filter.connect(gain);gain.connect(ctx.destination);source.start(start);source.stop(start+len);
+  }
+  function correctSound(){const ctx=context();if(!ctx)return;const t=ctx.currentTime+.01;tone(880,t,.32,.085,'sine');tone(1320,t+.025,.28,.04,'sine');tone(1174.66,t+.22,.42,.075,'sine');tone(1761.99,t+.24,.32,.035,'sine')}
+  function wrongSound(){const ctx=context();if(!ctx)return;const t=ctx.currentTime+.01;tone(110,t,.55,.072,'sawtooth');tone(164.81,t+.01,.54,.040,'sine');tone(98,t+.38,.30,.032,'sawtooth')}
+  function victorySong(){
+    const ctx=context();if(!ctx)return;
+    const t=ctx.currentTime+.08,beat=60/132;
+    // An original upbeat sea-voyage fanfare (not a recording of a commercial song).
+    const melody=[[523.25,0,.66],[659.25,.75,.56],[783.99,1.5,.62],[880,2.25,.64],[783.99,3,.56],[1046.5,3.75,1.02],[987.77,5,.38],[1174.66,5.5,.42],[1318.51,6,1.45],
+      [1046.5,8,.45],[1174.66,8.5,.42],[1318.51,9,.5],[1567.98,9.75,1.9]];
+    melody.forEach(([f,b,d])=>tone(f,t+b*beat,d*beat,.10,'triangle'));
+    for(let b=0;b<12;b++){kick(t+b*beat);hiHat(t+(b+.5)*beat);if(b%2===1)hiHat(t+b*beat)}
+    const chords=[[0,[261.63,329.63,392]],[4,[349.23,440,523.25]],[8,[392,493.88,587.33]],[12,[523.25,659.25,783.99]]];
+    chords.forEach(([b,notes])=>notes.forEach(f=>tone(f,t+b*beat,4*beat-.03,.021,'sine')));
+    [523.25,659.25,783.99,1046.5].forEach(f=>tone(f,t+12*beat,1.4,.055,'triangle'));
+  }
+  function speak(name){if(!game.sound||!('speechSynthesis'in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(`All hands on deck! Congratulations to ${name}, our Maritime English champions! Your crew has reached safe harbour!`);u.lang='en-GB';u.rate=.97;u.pitch=1.13;u.volume=.85;setTimeout(()=>speechSynthesis.speak(u),1200)}catch(_){}}
+
+  function choose(i,choice){
+    const t=game.teams[i];if(!t||t.busy||t.index>=20||game.winner!==null)return;
+    if(!game.startedAt)game.startedAt=Date.now();context();
+    const x=questions[i][t.index],correct=choice===x.correct;
+    t.busy=true;t.result={choice,correct};
+    if(correct)correctSound();else{t.retries++;wrongSound()}
+    announcer.textContent=`${t.name}: ${correct?'Correct course!':'Course correction needed. Read the clue and try again.'}`;
+    draw();save();
+    setTimeout(()=>{
+      t.busy=false;t.result=null;
+      if(correct)t.index++;
+      if(t.index===20&&game.winner===null){game.winner=i;game.finishedAt=Date.now();save();draw();showWinner()}else{save();draw()}
+    },correct?900:2300);
+  }
+  function confetti(){
+    const layer=document.getElementById('confetti');layer.innerHTML='';
+    const palette=['#67e4d3','#ff8fa3','#ffd167','#fff','#bba7ff','#70bafc'];
+    for(let i=0;i<62;i++){const e=document.createElement('i');e.className='confetti-bit';e.style.left=`${Math.random()*100}%`;e.style.background=palette[i%palette.length];e.style.borderRadius=i%4===0?'50%':'2px';e.style.animationDelay=`${-Math.random()*5}s`;e.style.animationDuration=`${3+Math.random()*2.3}s`;layer.appendChild(e)}
+  }
+  function showWinner(withSound=true){
+    if(game.winner===null)return;
+    const name=game.teams[game.winner].name;
+    document.getElementById('win-team').textContent=name;
+    document.getElementById('win-scores').innerHTML=game.teams.map((t,i)=>`<div class="win-score">${i===0?'PORT':'STARBOARD'} CREW · ${esc(t.name)} <strong>${t.index}/20</strong></div>`).join('');
+    confetti();overlay.hidden=false;document.getElementById('replay').focus();announcer.textContent=`${name} won the race!`;
+    if(withSound){victorySong();speak(name)}
+  }
+  function reset(){game=fresh();save();draw();overlay.hidden=true;if('speechSynthesis'in window)try{speechSynthesis.cancel()}catch(_){};announcer.textContent='A new voyage begins. Fair winds to both crews!'}
+  function openDialog(id){const d=document.getElementById(id);if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','')}
+  function drawDebate(){const d=debates[debateIndex];document.getElementById('debate-tag').textContent=d.tag;document.getElementById('debate-count').textContent=`${String(debateIndex+1).padStart(2,'0')} / ${String(debates.length).padStart(2,'0')}`;document.getElementById('debate-prompt').textContent=d.prompt}
+
+  board.addEventListener('click',e=>{const button=e.target.closest('[data-answer]');if(!button)return;const [i,choice]=button.dataset.answer.split(':').map(Number);choose(i,choice)});
+  board.addEventListener('input',e=>{const el=e.target.closest('[data-name]');if(!el)return;game.teams[Number(el.dataset.name)].name=el.value.slice(0,32);save()});
+  board.addEventListener('change',e=>{const el=e.target.closest('[data-name]');if(!el)return;const i=Number(el.dataset.name);game.teams[i].name=(el.value.trim()||initialTeams[i].name).slice(0,32);save();draw()});
+  document.getElementById('rules-open').addEventListener('click',()=>openDialog('rules-dialog'));
+  const openDebate=()=>{drawDebate();openDialog('debate-dialog')};
+  document.getElementById('debate-open').addEventListener('click',openDebate);document.getElementById('debate-inline').addEventListener('click',openDebate);
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.close).close()));
+  document.querySelectorAll('.dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+  document.getElementById('debate-prev').addEventListener('click',()=>{debateIndex=(debateIndex-1+debates.length)%debates.length;drawDebate()});
+  document.getElementById('debate-next').addEventListener('click',()=>{debateIndex=(debateIndex+1)%debates.length;drawDebate()});
+  document.getElementById('sound-toggle').addEventListener('click',()=>{game.sound=!game.sound;if(game.sound)context();save();draw()});
+  document.getElementById('fanfare-preview').addEventListener('click',()=>{if(!game.sound){game.sound=true;save();draw()}context();victorySong()});
+  document.getElementById('view-toggle').addEventListener('click',()=>{const compact=!document.body.classList.contains('board-view');document.body.classList.toggle('board-view',compact);const b=document.getElementById('view-toggle');b.innerHTML=`▣ <span>${compact?'Full view':'Board view'}</span>`;b.setAttribute('aria-pressed',String(compact));window.scrollTo({top:0,behavior:'smooth'})});
+  document.getElementById('reset-open').addEventListener('click',()=>{if(confirm('Start a new voyage? Both crews will lose their scores.'))reset()});
+  document.getElementById('replay').addEventListener('click',reset);
+  document.getElementById('see-board').addEventListener('click',()=>{overlay.hidden=true;document.getElementById('reset-open').focus()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden){overlay.hidden=true;document.getElementById('reset-open').focus()}});
+
+  draw();if(game.winner!==null)showWinner(false);
+})();
+
+</script>
+</body>
+</html>
